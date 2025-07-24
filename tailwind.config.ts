@@ -57,6 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        ai: {
+          primary: "hsl(142 76% 36%)",
+          secondary: "hsl(192 76% 36%)",
+          accent: "hsl(172 76% 36%)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
