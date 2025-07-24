@@ -43,6 +43,7 @@ export default function Index() {
     if (!selectedImage) return;
 
     setIsGenerating(true);
+    setError('');
 
     try {
       const response = await fetch('/api/caption', {
@@ -56,14 +57,19 @@ export default function Index() {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data: CaptionResponse = await response.json();
       setCaption(data.caption);
+      setConfidence(data.confidence);
     } catch (error) {
       console.error('Error generating caption:', error);
-      setCaption('Sorry, there was an error generating the caption. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Failed to generate caption: ${errorMessage}`);
+      setCaption('');
+      setConfidence(0);
     } finally {
       setIsGenerating(false);
     }
