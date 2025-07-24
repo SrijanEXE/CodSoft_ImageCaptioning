@@ -82,13 +82,29 @@ export default function Index() {
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
-    if (files[0]) {
+    const file = files[0];
+
+    if (file) {
+      // Validate file size (10MB limit)
+      if (file.size > 10 * 1024 * 1024) {
+        setError('File size must be less than 10MB');
+        return;
+      }
+
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please select a valid image file');
+        return;
+      }
+
+      setError('');
       const reader = new FileReader();
       reader.onload = (event) => {
         setSelectedImage(event.target?.result as string);
         setCaption('');
+        setConfidence(0);
       };
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
