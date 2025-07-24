@@ -248,7 +248,11 @@ export default function Index() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">AI-Generated Caption</h3>
                 
-                {caption ? (
+                {error ? (
+                  <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+                    <p className="text-destructive text-sm">{error}</p>
+                  </div>
+                ) : caption ? (
                   <div className="space-y-4">
                     <div className="bg-muted/50 rounded-lg p-6 border border-primary/20">
                       <div className="flex items-start gap-3">
@@ -256,22 +260,29 @@ export default function Index() {
                           <Brain className="w-4 h-4 text-white" />
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm text-muted-foreground mb-2">AI Caption</p>
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm text-muted-foreground">AI Caption</p>
+                            {confidence > 0 && (
+                              <Badge variant="secondary" className="text-xs">
+                                {Math.round(confidence * 100)}% confidence
+                              </Badge>
+                            )}
+                          </div>
                           <p className="text-base leading-relaxed">{caption}</p>
                         </div>
                       </div>
                     </div>
-                    
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline" 
+
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        variant="outline"
                         size="sm"
                         onClick={() => navigator.clipboard.writeText(caption)}
                       >
                         Copy Caption
                       </Button>
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         onClick={generateCaption}
                         disabled={isGenerating}
