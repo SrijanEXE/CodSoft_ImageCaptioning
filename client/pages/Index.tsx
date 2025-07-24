@@ -9,6 +9,8 @@ export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [caption, setCaption] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [confidence, setConfidence] = useState<number>(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
