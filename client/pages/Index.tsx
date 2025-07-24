@@ -3,6 +3,7 @@ import { Upload, Image as ImageIcon, Sparkles, Brain, Zap, Camera } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { CaptionRequest, CaptionResponse } from '@shared/api';
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
