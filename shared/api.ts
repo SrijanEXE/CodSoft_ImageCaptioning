@@ -10,3 +10,19 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * Request type for /api/caption
+ */
+export interface CaptionRequest {
+  image: string; // base64 encoded image
+}
+
+/**
+ * Response type for /api/caption
+ */
+export interface CaptionResponse {
+  caption: string;
+  confidence: number;
+  processingTime: number;
+}
