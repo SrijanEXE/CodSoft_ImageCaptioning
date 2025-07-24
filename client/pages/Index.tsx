@@ -163,9 +163,9 @@ export default function Index() {
       </section>
 
       {/* Main Interface */}
-      <section className="pb-20 px-4">
+      <section className="pb-12 md:pb-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-8">
             {/* Upload Section */}
             <Card className="upload-hover">
               <CardContent className="p-6">
