@@ -24,29 +24,32 @@ export default function Index() {
 
   const generateCaption = async () => {
     if (!selectedImage) return;
-    
-    setIsGenerating(true);
-    // Simulate AI processing with realistic delay
-    await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 2000));
-    
-    // Demo captions for now - will be replaced with actual AI
-    const demoCaption = generateDemoCaption();
-    setCaption(demoCaption);
-    setIsGenerating(false);
-  };
 
-  const generateDemoCaption = () => {
-    const captions = [
-      "A beautiful landscape with mountains in the background and a serene lake reflecting the sky.",
-      "A group of people enjoying a sunny day in the park with children playing in the foreground.",
-      "A cozy indoor scene with warm lighting, featuring a comfortable living room with modern furniture.",
-      "An urban cityscape at sunset with tall buildings creating dramatic silhouettes against the sky.",
-      "A close-up portrait of a person smiling warmly at the camera with natural lighting.",
-      "A delicious meal elegantly plated on a white dish with fresh ingredients and artistic presentation.",
-      "A pet animal in a playful pose, captured in natural lighting with a blurred background.",
-      "An architectural detail showing interesting patterns and textures with dramatic lighting and shadows."
-    ];
-    return captions[Math.floor(Math.random() * captions.length)];
+    setIsGenerating(true);
+
+    try {
+      const response = await fetch('/api/caption', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: selectedImage
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setCaption(data.caption);
+    } catch (error) {
+      console.error('Error generating caption:', error);
+      setCaption('Sorry, there was an error generating the caption. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleUploadClick = () => {
