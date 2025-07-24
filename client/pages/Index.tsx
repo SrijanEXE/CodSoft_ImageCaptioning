@@ -127,35 +127,35 @@ export default function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-8">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="w-3 h-3 mr-1" />
               Powered by Advanced AI
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">
               Transform Images into
               <span className="gradient-text block mt-2">Intelligent Captions</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience the power of computer vision and natural language processing. 
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+              Experience the power of computer vision and natural language processing.
               Upload any image and watch our AI generate detailed, contextual captions instantly.
             </p>
           </div>
 
           {/* Feature Pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <Badge variant="outline" className="px-4 py-2">
-              <Camera className="w-4 h-4 mr-2" />
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4">
+            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+              <Camera className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Computer Vision
             </Badge>
-            <Badge variant="outline" className="px-4 py-2">
-              <Brain className="w-4 h-4 mr-2" />
+            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+              <Brain className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Neural Networks
             </Badge>
-            <Badge variant="outline" className="px-4 py-2">
-              <Zap className="w-4 h-4 mr-2" />
+            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+              <Zap className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Real-time Processing
             </Badge>
           </div>
