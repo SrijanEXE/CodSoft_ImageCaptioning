@@ -1,1 +1,1 @@
-CodSoft_ImageCaptionong
+CodSoft_ImageCaptioning
