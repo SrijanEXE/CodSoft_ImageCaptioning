@@ -208,12 +208,20 @@
     position: absolute;
     border-radius: 50%;
     background: linear-gradient(45deg,
-      hsl(var(--primary) / 0.1),
-      hsl(192 76% 36% / 0.1),
-      hsl(172 76% 36% / 0.1)
+      hsl(var(--primary) / 0.12),
+      hsl(192 76% 36% / 0.12),
+      hsl(172 76% 36% / 0.12)
     );
     filter: blur(40px);
     animation: orbit 25s linear infinite;
+  }
+
+  .light .gradient-orb {
+    background: linear-gradient(45deg,
+      hsl(var(--primary) / 0.06),
+      hsl(192 76% 36% / 0.06),
+      hsl(172 76% 36% / 0.06)
+    );
   }
 
   .gradient-orb:nth-child(1) {
