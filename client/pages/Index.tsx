@@ -317,7 +317,7 @@ export default function Index() {
       <footer className="border-t border-border/40 py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">
-            Powered by advanced computer vision and natural language processing
+            Designed & Created by SRIJAN SAMANTA
           </p>
         </div>
       </footer>
