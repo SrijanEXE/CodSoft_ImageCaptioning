@@ -304,7 +304,16 @@
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 0.05; }
-    50% { opacity: 0.2; }
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.25; }
+  }
+
+  .light .connection-line {
+    animation: pulseLightTheme 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseLightTheme {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.12; }
   }
 }
