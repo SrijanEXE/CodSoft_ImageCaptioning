@@ -1,18 +1,25 @@
-import React, { useState, useRef } from 'react';
-import { Upload, Image as ImageIcon, Sparkles, Brain, Zap, Camera } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { LoadingSpinner } from '@/components/LoadingSpinner';
-import { AnimatedBackground } from '@/components/AnimatedBackground';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { CaptionRequest, CaptionResponse } from '@shared/api';
+import React, { useState, useRef } from "react";
+import {
+  Upload,
+  Image as ImageIcon,
+  Sparkles,
+  Brain,
+  Zap,
+  Camera,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { CaptionRequest, CaptionResponse } from "@shared/api";
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [caption, setCaption] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [caption, setCaption] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const [confidence, setConfidence] = useState<number>(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,21 +28,21 @@ export default function Index() {
     if (file) {
       // Validate file size (10MB limit)
       if (file.size > 10 * 1024 * 1024) {
-        setError('File size must be less than 10MB');
+        setError("File size must be less than 10MB");
         return;
       }
 
       // Validate file type
-      if (!file.type.startsWith('image/')) {
-        setError('Please select a valid image file');
+      if (!file.type.startsWith("image/")) {
+        setError("Please select a valid image file");
         return;
       }
 
-      setError('');
+      setError("");
       const reader = new FileReader();
       reader.onload = (e) => {
         setSelectedImage(e.target?.result as string);
-        setCaption(''); // Clear previous caption
+        setCaption(""); // Clear previous caption
         setConfidence(0);
       };
       reader.readAsDataURL(file);
@@ -46,32 +53,35 @@ export default function Index() {
     if (!selectedImage) return;
 
     setIsGenerating(true);
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('/api/caption', {
-        method: 'POST',
+      const response = await fetch("/api/caption", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          image: selectedImage
-        })
+          image: selectedImage,
+        }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`,
+        );
       }
 
       const data: CaptionResponse = await response.json();
       setCaption(data.caption);
       setConfidence(data.confidence);
     } catch (error) {
-      console.error('Error generating caption:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error("Error generating caption:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
       setError(`Failed to generate caption: ${errorMessage}`);
-      setCaption('');
+      setCaption("");
       setConfidence(0);
     } finally {
       setIsGenerating(false);
@@ -90,21 +100,21 @@ export default function Index() {
     if (file) {
       // Validate file size (10MB limit)
       if (file.size > 10 * 1024 * 1024) {
-        setError('File size must be less than 10MB');
+        setError("File size must be less than 10MB");
         return;
       }
 
       // Validate file type
-      if (!file.type.startsWith('image/')) {
-        setError('Please select a valid image file');
+      if (!file.type.startsWith("image/")) {
+        setError("Please select a valid image file");
         return;
       }
 
-      setError('');
+      setError("");
       const reader = new FileReader();
       reader.onload = (event) => {
         setSelectedImage(event.target?.result as string);
-        setCaption('');
+        setCaption("");
         setConfidence(0);
       };
       reader.readAsDataURL(file);
@@ -145,25 +155,37 @@ export default function Index() {
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">
               Transform Images into
-              <span className="gradient-text block mt-2">Intelligent Captions</span>
+              <span className="gradient-text block mt-2">
+                Intelligent Captions
+              </span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              Experience the power of computer vision and natural language processing.
-              Upload any image and watch our AI generate detailed, contextual captions instantly.
+              Experience the power of computer vision and natural language
+              processing. Upload any image and watch our AI generate detailed,
+              contextual captions instantly.
             </p>
           </div>
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4">
-            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+            <Badge
+              variant="outline"
+              className="px-3 md:px-4 py-2 text-xs md:text-sm"
+            >
               <Camera className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Computer Vision
             </Badge>
-            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+            <Badge
+              variant="outline"
+              className="px-3 md:px-4 py-2 text-xs md:text-sm"
+            >
               <Brain className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Neural Networks
             </Badge>
-            <Badge variant="outline" className="px-3 md:px-4 py-2 text-xs md:text-sm">
+            <Badge
+              variant="outline"
+              className="px-3 md:px-4 py-2 text-xs md:text-sm"
+            >
               <Zap className="w-3 md:w-4 h-3 md:h-4 mr-1 md:mr-2" />
               Real-time Processing
             </Badge>
@@ -192,7 +214,7 @@ export default function Index() {
                     onChange={handleImageUpload}
                     className="hidden"
                   />
-                  
+
                   {selectedImage ? (
                     <div className="space-y-4">
                       <img
@@ -217,8 +239,12 @@ export default function Index() {
                         <Upload className="w-8 h-8 text-white" />
                       </div>
                       <div>
-                        <p className="text-lg font-medium">Drop your image here</p>
-                        <p className="text-muted-foreground">or click to browse</p>
+                        <p className="text-lg font-medium">
+                          Drop your image here
+                        </p>
+                        <p className="text-muted-foreground">
+                          or click to browse
+                        </p>
                       </div>
                       <p className="text-sm text-muted-foreground">
                         Supports JPG, PNG, GIF up to 10MB
@@ -229,7 +255,7 @@ export default function Index() {
 
                 {selectedImage && (
                   <div className="mt-6">
-                    <Button 
+                    <Button
                       onClick={generateCaption}
                       disabled={isGenerating}
                       className="w-full gradient-ai"
@@ -255,8 +281,10 @@ export default function Index() {
             {/* Results Section */}
             <Card className="upload-hover">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">AI-Generated Caption</h3>
-                
+                <h3 className="text-xl font-semibold mb-4">
+                  AI-Generated Caption
+                </h3>
+
                 {error ? (
                   <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
                     <p className="text-destructive text-sm">{error}</p>
@@ -270,7 +298,9 @@ export default function Index() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <p className="text-sm text-muted-foreground">AI Caption</p>
+                            <p className="text-sm text-muted-foreground">
+                              AI Caption
+                            </p>
                             {confidence > 0 && (
                               <Badge variant="secondary" className="text-xs">
                                 {Math.round(confidence * 100)}% confidence
