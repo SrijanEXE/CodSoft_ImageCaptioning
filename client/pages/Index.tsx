@@ -116,6 +116,9 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Animated Background */}
+      <AnimatedBackground />
+
       {/* Header */}
       <header className="border-b border-border/40">
         <div className="container mx-auto px-4 py-4">
