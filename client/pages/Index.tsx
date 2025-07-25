@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { AnimatedBackground } from '@/components/AnimatedBackground';
 import { CaptionRequest, CaptionResponse } from '@shared/api';
 
 export default function Index() {
