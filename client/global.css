@@ -144,8 +144,12 @@
     height: 2px;
     background: hsl(var(--primary));
     border-radius: 50%;
-    opacity: 0.3;
+    opacity: 0.4;
     animation: float 20s infinite linear;
+  }
+
+  .light .bg-particle {
+    opacity: 0.2;
   }
 
   .bg-particle:nth-child(2) { animation-delay: -2s; }
