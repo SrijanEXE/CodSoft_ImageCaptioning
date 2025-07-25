@@ -153,9 +153,9 @@ export default function Index() {
               <Sparkles className="w-3 h-3 mr-1" />
               Powered by Advanced AI
             </Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 flex flex-col">
               Transform Images into
-              <span className="gradient-text block mt-2">
+              <span className="gradient-text block mt-2 pb-5">
                 Intelligent Captions
               </span>
             </h1>
